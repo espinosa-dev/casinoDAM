@@ -20,15 +20,27 @@ public class TragaPerras {
                         menuAddDinero(dinero);
                         dinero = scn.nextInt();
                     case 2:
+                        System.out.println("Introduce tu apuesta");
+                        int apuesta = scn.nextInt();
+                        while (apuesta > dinero){
+                            System.out.println("La apuesta no puede ser mayor a tu dinero.");
+                            System.out.println("Introduce tu apuesta: ");
+                            apuesta = scn.nextInt();
+                        }
+                            List<String> list = List.of("🍌", "🍇", "🍊", "🍋", "🍒", "🍀");
+                            Random random = new Random();
+                            String randomElement1 = list.get(random.nextInt(list.size()));
+                            System.out.print(randomElement1);
+                            String randomElement2 = list.get(random.nextInt(list.size()));
+                            System.out.print(randomElement2);
+                            String randomElement3 = list.get(random.nextInt(list.size()));
+                            System.out.println(randomElement3);
+                            int premio = premio(randomElement1, randomElement2, randomElement3, apuesta);
+                            apuesta -= premio;
+                            System.out.println("Premio: " + premio);
+                            scn.nextLine();
 
-                        List<String> list = List.of("🍌", "🍇", "🍊", "🍋", "🍒", "🍀");
-                        Random random = new Random();
-                        String randomElement1 = list.get(random.nextInt(list.size()));
-                        System.out.print(randomElement1);
-                        String randomElement2 = list.get(random.nextInt(list.size()));
-                        System.out.print(randomElement2);
-                        String randomElement3 = list.get(random.nextInt(list.size()));
-                        System.out.print(randomElement3);
+
                 } break;
             case 2:
                 System.out.println("¡Hasta pronto!");
@@ -58,7 +70,7 @@ public class TragaPerras {
                  dinero*= dinero;
             }
         }
-        return dinero = 0;
+        return dinero -= dinero;
      }
      public static void menu(){
          System.out.println("CASINO DAM");
