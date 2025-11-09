@@ -1,54 +1,56 @@
 package Juegos;
 
+import Metodos.CleanScreen;
+import Metodos.CleanScreen.*;
 import java.util.List;
 import java.util.Random;
 import java.util.Scanner;
 
 public class TragaPerras {
+    private static final Scanner scn = new Scanner(System.in);
     public static void main(String[] args) {
-        Scanner scn = new Scanner(System.in);
-        int banca, dinero = 0, opcion;
+        int dinero = 0, opcion;
         menu();
         do {
             System.out.print("Elige una opción: ");
             opcion = scn.nextInt();
         }while (opcion != 1 && opcion != 2);
-        switch (opcion){
-            case 1:
-                menuJuego(dinero);
+
+        while (opcion == 1) {
+            CleanScreen.cls();
+            menuJuego(dinero);
+            do {
+                System.out.print("Elige una opción: ");
                 opcion = scn.nextInt();
-                switch (opcion){
-                    case 1:
-                        menuAddDinero(dinero);
-                        dinero = scn.nextInt();
-                    case 2:
-                        System.out.println("Introduce tu apuesta");
-                        int apuesta = scn.nextInt();
-                        while (apuesta > dinero){
-                            System.out.println("La apuesta no puede ser mayor a tu dinero.");
-                            System.out.println("Introduce tu apuesta: ");
-                            apuesta = scn.nextInt();
-                        }
-                            List<String> list = List.of("🍌", "🍇", "🍊", "🍋", "🍒", "🍀");
-                            Random random = new Random();
-                            String randomElement1 = list.get(random.nextInt(list.size()));
-                            System.out.print(randomElement1);
-                            String randomElement2 = list.get(random.nextInt(list.size()));
-                            System.out.print(randomElement2);
-                            String randomElement3 = list.get(random.nextInt(list.size()));
-                            System.out.println(randomElement3);
-                            int premio = premio(randomElement1, randomElement2, randomElement3, apuesta);
-                            apuesta -= premio;
-                            System.out.println("Premio: " + premio);
-                            scn.nextLine();
+            } while (opcion != 1 && opcion != 2);
 
 
-                } break;
-            case 2:
-                System.out.println("¡Hasta pronto!");
-                return;
-            default:
-                break;
+            switch (opcion) {
+                case 1:
+                    menuAddDinero(dinero);
+                    dinero = scn.nextInt(); break;
+                case 2:
+                    System.out.println("Introduce tu apuesta");
+                    int apuesta = scn.nextInt();
+                    while (apuesta > dinero) {
+                        System.out.println("La apuesta no puede ser mayor a tu dinero.");
+                        System.out.println("Introduce tu apuesta: ");
+                        apuesta = scn.nextInt();
+                    }
+                    List<String> list = List.of("🍌", "🍇", "🍊", "🍋", "🍒", "🍀");
+                    Random random = new Random();
+                    String randomElement1 = list.get(random.nextInt(list.size()));
+                    System.out.print(randomElement1);
+                    String randomElement2 = list.get(random.nextInt(list.size()));
+                    System.out.print(randomElement2);
+                    String randomElement3 = list.get(random.nextInt(list.size()));
+                    System.out.println(randomElement3);
+                    int premio = premio(randomElement1, randomElement2, randomElement3, apuesta);
+                    apuesta -= premio;
+                    System.out.println("Premio: " + premio);
+                    scn.nextLine();
+                    break;
+            }
         }
 
 
@@ -80,6 +82,7 @@ public class TragaPerras {
          System.out.println("1. Jugar");
          System.out.println("2. Salir");
          System.out.println("-----------");
+         scn.nextLine();
 
      }
     public static void menuJuego(int dinero){
